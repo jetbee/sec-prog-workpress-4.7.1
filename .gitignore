@@ -1,0 +1,4 @@
+# MySQLデータベースとWordPressの永続データディレクトリを除外
+db_data/
+wordpress_data/
+

@@ -16,14 +16,15 @@ RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
     && rm -rf /var/lib/apt/lists/*
 
 
-# WordPress 4.7.1 をローカルディレクトリから展開
+# WordPress 4.7.1 アーカイブをコンテナに追加
 COPY wordpress-4.7.1.tar.gz /tmp/wordpress-4.7.1.tar.gz
-RUN tar -xzf /tmp/wordpress-4.7.1.tar.gz -C /var/www/html --strip-components=1 \
-    && rm /tmp/wordpress-4.7.1.tar.gz
 
+# entrypoint.sh スクリプトをコンテナに追加し、実行権限を付与
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-# WordPress 用ディレクトリの権限設定
-RUN chown -R www-data:www-data /var/www/html
+# entrypoint を指定
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
 # ポート 80 を公開
 EXPOSE 80
