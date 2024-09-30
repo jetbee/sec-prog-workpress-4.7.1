@@ -2,19 +2,19 @@ import requests
 from bs4 import BeautifulSoup
 
 # WordPressのURLと更新対象の投稿ID
-rest_api_url = http://[マシンのIPアドレス]:8080/wp-json/wp/v2/posts/[記事のID]?id=[記事のID]'  # 更新用URL
-login_url = 'http://[マシンのIPアドレス]:8080/wp-login.php'
+rest_api_url = 'http://[マシンのIPアドレス]:8080/wp-json/wp/v2/posts/[記事のID]?id=[記事のID]'  # 攻撃用URL
+login_url = http://[マシンのIPアドレス]:8080/wp-login.php'
 
 # WordPressのログイン情報と書き換えたい記事の内容
 username = 'admin'
 password = 'abcd1234'
-title: 'Updated Title by Authorized User',
-content: 'This post was updated using a valid session.'
+title = 'Updated Title by Authorized User'
+content = 'This post was updated using a valid session.'
 
-# セッションを作成
+# セッションを開始
 session = requests.Session()
 
-# ログインページにアクセスして、ログイン用のnonceを取得
+# ログインページにアクセスして、ログイン用のnonce（トークン）を取得
 login_page = session.get(login_url)
 soup = BeautifulSoup(login_page.content, 'html.parser')
 
@@ -30,7 +30,7 @@ login_data = {
     'log': username,           # ユーザー名
     'pwd': password,           # パスワード
     'wp-submit': 'Log In',     # ボタン名
-    'redirect_to': base_url,   # リダイレクト先
+    'redirect_to': login_url,  # リダイレクト先
     'testcookie': '1'          # WordPressのクッキーをテスト
 }
 
