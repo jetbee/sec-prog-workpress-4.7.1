@@ -1,7 +1,12 @@
 FROM php:7.0-apache
 
+# mod_rewrite / .htaccessの有効化
+RUN a2enmod rewrite
+RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+
 # 必要なPHPモジュールとライブラリをインストール
 # Debian Stretch のアーカイブリポジトリを使うように設定
+
 RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
     sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
     sed -i '/stretch-updates/d' /etc/apt/sources.list && \

@@ -14,7 +14,7 @@ update_data = {
 }
 
 # 攻撃リクエストを送信
-response = requests.put(rest_api_url, json=update_data)
+response = requests.post(rest_api_url, json=update_data)
 
 # レスポンス確認
 print("Status code: ", response.status_code)
