@@ -50,7 +50,7 @@ update_data = {
 }
 
 # 認証されたセッションを使って投稿を更新
-response = session.post(rest_api_url, json=update_data)
+response = session.put(rest_api_url, json=update_data)
 
 # レスポンス確認
 print("Status code: ", response.status_code)
