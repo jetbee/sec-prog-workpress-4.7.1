@@ -7,10 +7,10 @@ RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
 # 必要なPHPモジュールとライブラリをインストール
 # Debian Stretch のアーカイブリポジトリを使うように設定
 
-RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
-    sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list && \
-    sed -i '/stretch-updates/d' /etc/apt/sources.list && \
-    apt-get update && apt-get install -y --no-install-recommends \
+RUN echo "deb http://archive.debian.org/debian stretch main contrib non-free" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security stretch/updates main contrib non-free" >> /etc/apt/sources.list && \
+    apt-get update -o Acquire::Check-Valid-Until=false && \
+    apt-get install -y --allow-unauthenticated --no-install-recommends \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
